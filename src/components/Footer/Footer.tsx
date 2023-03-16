@@ -5,7 +5,7 @@ class Footer extends Component {
   render() {
     return (
       <footer className="footer">
-        <ul className="footer__ul">
+        <ul className="footer_ul">
           <li>
             <a
               className="footer_link"
@@ -13,7 +13,7 @@ class Footer extends Component {
               target="_blank"
               rel="noreferrer"
             >
-              github
+              GitHub
             </a>
           </li>
           <li>
