@@ -14,7 +14,7 @@ class Card extends Component<CardProps> {
         <h2>
           {this.props.car.name} <span> - {this.props.car.year}</span>
         </h2>
-        <h3>{this.props.car.category}</h3>
+        <h3>Class: {this.props.car.category}</h3>
         <h3>passengers: {this.props.car.people}</h3>
         <h2>{this.props.car.price} &#8381;/day</h2>
       </div>
