@@ -6,8 +6,12 @@ class SearchInput extends Component {
     text: '',
   };
 
+  inputRef = React.createRef<HTMLInputElement>();
+
   componentDidMount(): void {
-    this.setState({ text: localStorage.getItem('curSearch') });
+    this.setState({
+      text: localStorage.getItem('curSearch') ? localStorage.getItem('curSearch') : '',
+    });
   }
 
   handleChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
@@ -27,6 +31,7 @@ class SearchInput extends Component {
           placeholder="Search here..."
           value={this.state.text}
           onChange={this.handleChange}
+          ref={this.inputRef}
         ></input>
         <button>Search</button>
       </form>
