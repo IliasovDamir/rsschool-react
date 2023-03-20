@@ -1,0 +1,23 @@
+.footer {
+  background-color: #d7dce5;
+  height: 50px;
+  display: flex;  
+  align-items: center;
+  justify-content: space-between;
+  font-size: calc(10px + 1vmin);
+  width: 100%;
+}
+
+.footer_ul {
+  display: flex;
+  list-style-type: none;
+  width: 95%;
+  margin: 0 auto;
+  justify-content: space-between;
+}
+
+.footer_ul li a,
+.footer_ul li a:visited {
+  text-decoration: none;
+  color: inherit;
+}
