@@ -1,17 +1,23 @@
 import React, { Component } from 'react';
 import './SearchInput.css';
 
-class SearchInput extends Component {
-  state = {
-    text: '',
-  };
+interface SearchInputState {
+  text: string;
+}
 
-  inputRef = React.createRef<HTMLInputElement>();
+class SearchInput extends Component<unknown, SearchInputState> {
+  state = {
+    text: localStorage.getItem('curSearch') || '',
+  };
 
   componentDidMount(): void {
     this.setState({
-      text: localStorage.getItem('curSearch') ? localStorage.getItem('curSearch') : '',
+      text: localStorage.getItem('curSearch') || '',
     });
+  }
+
+  componentWillUnmount(): void {
+    localStorage.setItem('curSearch', this.state.text);
   }
 
   handleChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
@@ -20,7 +26,6 @@ class SearchInput extends Component {
 
   handleSubmit = (event: React.FormEvent<HTMLFormElement>): void => {
     event.preventDefault();
-    localStorage.setItem('curSearch', this.state.text);
   };
 
   render() {
@@ -30,10 +35,8 @@ class SearchInput extends Component {
           type="text"
           placeholder="Search here..."
           value={this.state.text}
-          onChange={this.handleChange}
-          ref={this.inputRef}
+          onChange={(event) => this.handleChange(event)}
         ></input>
-        <button>Search</button>
       </form>
     );
   }

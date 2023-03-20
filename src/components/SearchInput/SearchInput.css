@@ -9,11 +9,3 @@
   width: 80%;
   padding: 5px;
 }
-
-.search_container button {
-  padding: 5px;
-}
-
-.search_container button:hover{
-  background-color: #36a52c;
-}
