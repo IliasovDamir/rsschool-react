@@ -18,6 +18,11 @@ class Header extends Component {
                 About
               </NavLink>
             </li>
+            <li>
+              <NavLink className="nav_link" to="/forms">
+                Forms
+              </NavLink>
+            </li>
           </ul>
         </nav>
       </header>

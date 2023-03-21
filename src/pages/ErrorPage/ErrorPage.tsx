@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import './ErrorPage.css';
+import '../AboutPage/AboutPage.css';
 
 class ErrorPage extends Component {
   render() {
