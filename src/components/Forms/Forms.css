@@ -7,7 +7,7 @@
   -moz-box-shadow: 0px 0px 15px 10px rgba(34, 60, 80, 0.15);
   box-shadow: 0px 0px 15px 10px rgba(34, 60, 80, 0.15);
   padding: 20px 10px;
-  min-width: 40%;
+  width: 45%;
 }
 
 .section_forms form input:hover {
@@ -19,15 +19,25 @@
   flex-direction: column;
   gap: 4px;
   padding: 5px;
+  outline: 1px solid 13d34d;
+  border-radius: 5px;
+}
+
+.section_forms form p {
+  color: rgb(241, 65, 38);
+  text-align: center;
+  word-break: break-all;
+  white-space: pre-line;
 }
 
 .section_forms form fieldset legend {
   margin: 10px auto;
+  padding: 0 5px;
 }
 
 .section_forms form fieldset input[type=radio],
 .section_forms form fieldset input[type=checkbox] {
-  margin-right: 5px;
+  margin-right: 10px;
 }
 
 .section_forms form input[type=submit] {
