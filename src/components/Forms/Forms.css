@@ -48,3 +48,15 @@
 .section_forms form input[type=submit]:hover {
   background-color: #13d34d;
 }
+
+.form_card {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8em;
+  border-radius: 5px;
+  -webkit-box-shadow: 0px 0px 15px 10px rgba(34, 60, 80, 0.15);
+  -moz-box-shadow: 0px 0px 15px 10px rgba(34, 60, 80, 0.15);
+  box-shadow: 0px 0px 15px 10px rgba(34, 60, 80, 0.15);
+  padding: 20px 10px;
+  margin-bottom: 3%;
+}
