@@ -262,7 +262,7 @@ class Forms extends Component<FormsProps, FormsState> {
             <p>{this.state.photoError}</p>
             <input type="file" accept="image/png, image/gif, image/jpeg" ref={this.fileInput} />
           </fieldset>
-          <input type="submit" value="Submit" />
+          <input type="submit" value="Send" />
         </form>
         <div className="formCards-wrap">
           {this.state.formCards.map((card, index) => {
