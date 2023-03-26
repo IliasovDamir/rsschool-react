@@ -15,6 +15,7 @@ export interface FormsState {
   daysToRentError: string;
   photoError: string;
   imgFile: string;
+  isModalOpen: boolean;
   formCards: IFormCards[];
 }
 export interface IFormCards {
@@ -38,7 +39,6 @@ class Forms extends Component<FormsProps, FormsState> {
   radioInput2: Ref;
   radioInput3: Ref;
   fileInput: Ref;
-  // formCards: IFormCards[] = [];
 
   constructor(props: FormsProps) {
     super(props);
@@ -53,7 +53,6 @@ class Forms extends Component<FormsProps, FormsState> {
     this.radioInput2 = React.createRef();
     this.radioInput3 = React.createRef();
     this.fileInput = React.createRef();
-    // this.formCards = [];
 
     this.state = {
       nameError: '',
@@ -63,6 +62,7 @@ class Forms extends Component<FormsProps, FormsState> {
       daysToRentError: '',
       photoError: '',
       imgFile: '',
+      isModalOpen: false,
       formCards: [
         {
           photo: '',
@@ -84,10 +84,10 @@ class Forms extends Component<FormsProps, FormsState> {
     await this.checkServices();
     await this.checkDaysToRent();
     await this.checkPhoto();
-    if (Object.values(this.state).slice(0, -2).join('') === '') {
+    if (Object.values(this.state).slice(0, -3).join('') === '') {
       this.createFormsCard();
-      //   this.showModal();
-      this.resetForm();
+      this.showModal();
+      this.refForm.current?.reset();
     }
   };
 
@@ -103,8 +103,9 @@ class Forms extends Component<FormsProps, FormsState> {
 
   async checkDate(): Promise<void> {
     let errText = '';
-    // const today = new Date();
-    if (!this.dateInput.current!.value) {
+    const today = new Date();
+    const selectedDay = new Date(this.dateInput.current!.value);
+    if (!this.dateInput.current!.value || today >= selectedDay) {
       errText = 'Please select correct date';
     }
     this.setState({ dateError: errText });
@@ -179,19 +180,22 @@ class Forms extends Component<FormsProps, FormsState> {
       daysToRent: daysToRentFromRef,
     };
 
-    const createNewCard = this.state.formCards.map((el) => el);
+    const createNewCard = this.state.formCards.slice();
     createNewCard.push(currentCard);
     this.setState({ formCards: createNewCard });
   }
 
-  resetForm() {
-    this.refForm.current && this.refForm.current.reset();
+  showModal() {
+    this.setState({ isModalOpen: true });
+    setTimeout(() => {
+      this.setState({ isModalOpen: false });
+    }, 2500);
   }
 
   render() {
     return (
       <>
-        <form onSubmit={(event) => this.handleSubmit(event)}>
+        <form ref={this.refForm} onSubmit={(event) => this.handleSubmit(event)}>
           <fieldset>
             <legend>Name</legend>
             <p>{this.state.nameError}</p>
@@ -220,7 +224,12 @@ class Forms extends Component<FormsProps, FormsState> {
               Insurance
             </label>
             <label>
-              <input type="checkbox" name="Transfer" id="check1" ref={this.checkInput2} />
+              <input
+                type="checkbox"
+                name="Delivery to airport"
+                id="check1"
+                ref={this.checkInput2}
+              />
               Delivery to airport
             </label>
             <label>
@@ -259,6 +268,9 @@ class Forms extends Component<FormsProps, FormsState> {
           {this.state.formCards.map((card, index) => {
             if (index > 0) return <FormsCard card={card} key={card.name} />;
           })}
+        </div>
+        <div className={this.state.isModalOpen ? 'form_modal-open' : 'form_modal-close'}>
+          Thank you for submitting your rental request.
         </div>
       </>
     );
