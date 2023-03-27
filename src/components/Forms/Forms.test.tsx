@@ -1,6 +1,6 @@
 import React from 'react';
 import Forms from './Forms';
-import { createEvent, render, screen } from '@testing-library/react';
+import { createEvent, render, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
 describe('Forms', () => {
@@ -30,10 +30,12 @@ describe('Forms', () => {
     expect(screen.getByText(/3 - 7/i)).toBeInTheDocument();
     expect(screen.getByText(/More/i)).toBeInTheDocument();
   });
-  test('Input submit', () => {
+  test('Input submit', async () => {
     render(<Forms />);
     const submitInput = screen.getByText(/send/i);
-    userEvent.click(submitInput);
+    await waitFor(() => {
+      userEvent.click(submitInput);
+    });
     const click = createEvent.click(submitInput);
     expect(click.defaultPrevented).toBe(false);
   });
