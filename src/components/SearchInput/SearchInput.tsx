@@ -1,45 +1,28 @@
-import React, { Component } from 'react';
+import React, { FC, useState } from 'react';
 import './SearchInput.css';
 
-interface SearchInputState {
-  text: string;
-}
+const SearchInput: FC = () => {
+  const [text, setText] = useState(localStorage.getItem('curSearch') || '');
 
-class SearchInput extends Component<unknown, SearchInputState> {
-  state = {
-    text: localStorage.getItem('curSearch') || '',
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setText(event.target.value);
+    localStorage.setItem('curSearch', event.target.value);
   };
 
-  componentDidMount(): void {
-    this.setState({
-      text: localStorage.getItem('curSearch') || '',
-    });
-  }
-
-  componentWillUnmount(): void {
-    localStorage.setItem('curSearch', this.state.text);
-  }
-
-  handleChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
-    this.setState({ text: event.target.value });
-  };
-
-  handleSubmit = (event: React.FormEvent<HTMLFormElement>): void => {
+  const handleSubmit = (event: React.FormEvent<HTMLFormElement>): void => {
     event.preventDefault();
   };
 
-  render() {
-    return (
-      <form className="search_container" onSubmit={(event) => this.handleSubmit(event)}>
-        <input
-          type="text"
-          placeholder="Search here..."
-          value={this.state.text}
-          onChange={(event) => this.handleChange(event)}
-        ></input>
-      </form>
-    );
-  }
-}
+  return (
+    <form className="search_container" onSubmit={(event) => handleSubmit(event)}>
+      <input
+        type="text"
+        placeholder="Search here..."
+        value={text}
+        onChange={(event) => handleChange(event)}
+      ></input>
+    </form>
+  );
+};
 
 export default SearchInput;
