@@ -18,7 +18,7 @@ describe('FormsCard', () => {
     expect(screen.getByText(/Name/i)).toBeInTheDocument();
     expect(screen.getByText(/Date/i)).toBeInTheDocument();
     expect(screen.getByText(/Class/i)).toBeInTheDocument();
-    expect(screen.getByText(/Service1/i)).toBeInTheDocument();
+    expect(screen.getByText(/privacy/i)).toBeInTheDocument();
     expect(screen.getByText(/Rental duration/i)).toBeInTheDocument();
   });
 });
