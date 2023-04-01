@@ -1,0 +1,18 @@
+.form_modal-open {
+    z-index: 100;
+    display: flex;
+    background-color: rgba(34, 60, 80, 0.5);
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    align-items: center;
+    justify-content: center;
+    top: 0;
+    left: 0;
+    color: #ffffff;
+    font-size: 48px;
+  }
+  
+  .form_modal-close {
+    display: none;
+  }
