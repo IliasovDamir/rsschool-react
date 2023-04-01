@@ -22,8 +22,8 @@ const Forms: FC = () => {
     reset,
   } = useForm();
 
-  const onSubmit = () => {
-    // card.photo = URL.createObjectURL(new Blob());
+  const onSubmit = (data: any) => {
+    card.photo = URL.createObjectURL(new Blob());
     showModal();
     reset();
   };
