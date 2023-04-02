@@ -9,8 +9,8 @@ describe('FormsCard', () => {
       name: 'Name',
       date: '2023-03-28',
       carCategory: 'Class',
-      services: ['Service1'],
       daysToRent: '1-3',
+      accept: true,
     };
 
     render(<FormsCard card={testFormsCard} />);
@@ -18,7 +18,6 @@ describe('FormsCard', () => {
     expect(screen.getByText(/Name/i)).toBeInTheDocument();
     expect(screen.getByText(/Date/i)).toBeInTheDocument();
     expect(screen.getByText(/Class/i)).toBeInTheDocument();
-    expect(screen.getByText(/privacy/i)).toBeInTheDocument();
-    expect(screen.getByText(/Rental duration/i)).toBeInTheDocument();
+    expect(screen.getByText(/Rental/i)).toBeInTheDocument();
   });
 });

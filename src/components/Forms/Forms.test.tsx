@@ -1,37 +1,96 @@
 import React from 'react';
-import Forms from './Forms';
-import { createEvent, render, screen, waitFor } from '@testing-library/react';
+import Forms, { IFormCards } from './Forms';
+import { createEvent, getByRole, render, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
 describe('Forms', () => {
   test('Input name', () => {
-    render(<Forms />);
+    render(
+      <Forms
+        updateCardsList={function (data: IFormCards): void {
+          throw new Error('Function not implemented.');
+        }}
+        openModal={function (): void {
+          throw new Error('Function not implemented.');
+        }}
+      />
+    );
     expect(screen.getByText(/Name/i)).toBeInTheDocument();
+    expect(screen.getByRole<HTMLInputElement>('textbox')).toBeInTheDocument();
   });
   test('Input date', () => {
-    render(<Forms />);
+    render(
+      <Forms
+        updateCardsList={function (data: IFormCards): void {
+          throw new Error('Function not implemented.');
+        }}
+        openModal={function (): void {
+          throw new Error('Function not implemented.');
+        }}
+      />
+    );
     expect(screen.getByText(/date/i)).toBeInTheDocument();
   });
   test('Input select', () => {
-    render(<Forms />);
+    render(
+      <Forms
+        updateCardsList={function (data: IFormCards): void {
+          throw new Error('Function not implemented.');
+        }}
+        openModal={function (): void {
+          throw new Error('Function not implemented.');
+        }}
+      />
+    );
     expect(screen.getByText(/Car class/i)).toBeInTheDocument();
+    expect(screen.getByRole<HTMLSelectElement>('combobox')).toBeInTheDocument();
   });
   test('Input checkbox', () => {
-    render(<Forms />);
-    expect(screen.getByText(/Additional services/i)).toBeInTheDocument();
-    expect(screen.getByText(/Insurance/i)).toBeInTheDocument();
-    expect(screen.getByText(/Delivery to airport/i)).toBeInTheDocument();
-    expect(screen.getByText(/Baby chair/i)).toBeInTheDocument();
+    render(
+      <Forms
+        updateCardsList={function (data: IFormCards): void {
+          throw new Error('Function not implemented.');
+        }}
+        openModal={function (): void {
+          throw new Error('Function not implemented.');
+        }}
+      />
+    );
+    expect(screen.getByText(/privacy/i)).toBeInTheDocument();
+    expect(screen.getByText(/agree/i)).toBeInTheDocument();
+    expect(screen.getByRole<HTMLInputElement>('checkbox')).toBeInTheDocument();
   });
   test('Input radio', () => {
-    render(<Forms />);
+    render(
+      <Forms
+        updateCardsList={function (data: IFormCards): void {
+          throw new Error('Function not implemented.');
+        }}
+        openModal={function (): void {
+          throw new Error('Function not implemented.');
+        }}
+      />
+    );
     expect(screen.getByText(/How many days/i)).toBeInTheDocument();
     expect(screen.getByText(/1 - 3/i)).toBeInTheDocument();
     expect(screen.getByText(/3 - 7/i)).toBeInTheDocument();
     expect(screen.getByText(/More/i)).toBeInTheDocument();
+    const radioArray = screen.getAllByRole<HTMLInputElement>('radio');
+    expect(radioArray[0]).toBeInTheDocument();
+    expect(radioArray[1]).toBeInTheDocument();
+    expect(radioArray[2]).toBeInTheDocument();
   });
   test('Input submit', async () => {
-    render(<Forms />);
+    render(
+      <Forms
+        updateCardsList={function (): void {
+          throw new Error('Function not implemented.');
+        }}
+        openModal={function (): void {
+          throw new Error('Function not implemented.');
+        }}
+      />
+    );
     const submitInput = screen.getByText(/send/i);
     await waitFor(() => {
       userEvent.click(submitInput);
