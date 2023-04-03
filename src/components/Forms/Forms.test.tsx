@@ -1,7 +1,7 @@
 import React from 'react';
-import Forms, { IFormCards } from './Forms';
 import { createEvent, render, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
+import Forms from './Forms';
 
 describe('Forms', () => {
   test('Input name', () => {
