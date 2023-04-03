@@ -1,13 +1,13 @@
 import React from 'react';
 import Forms, { IFormCards } from './Forms';
-import { createEvent, getByRole, render, screen, waitFor } from '@testing-library/react';
+import { createEvent, render, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
 describe('Forms', () => {
   test('Input name', () => {
     render(
       <Forms
-        updateCardsList={function (data: IFormCards): void {
+        updateCardsList={function (): void {
           throw new Error('Function not implemented.');
         }}
         openModal={function (): void {
@@ -21,7 +21,7 @@ describe('Forms', () => {
   test('Input date', () => {
     render(
       <Forms
-        updateCardsList={function (data: IFormCards): void {
+        updateCardsList={function (): void {
           throw new Error('Function not implemented.');
         }}
         openModal={function (): void {
@@ -34,7 +34,7 @@ describe('Forms', () => {
   test('Input select', () => {
     render(
       <Forms
-        updateCardsList={function (data: IFormCards): void {
+        updateCardsList={function (): void {
           throw new Error('Function not implemented.');
         }}
         openModal={function (): void {
@@ -48,7 +48,7 @@ describe('Forms', () => {
   test('Input checkbox', () => {
     render(
       <Forms
-        updateCardsList={function (data: IFormCards): void {
+        updateCardsList={function (): void {
           throw new Error('Function not implemented.');
         }}
         openModal={function (): void {
@@ -63,7 +63,7 @@ describe('Forms', () => {
   test('Input radio', () => {
     render(
       <Forms
-        updateCardsList={function (data: IFormCards): void {
+        updateCardsList={function (): void {
           throw new Error('Function not implemented.');
         }}
         openModal={function (): void {
