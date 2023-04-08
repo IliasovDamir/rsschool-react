@@ -1,25 +1,19 @@
-import { Iproduct } from 'data/products';
-import React, { Component } from 'react';
+import React, { FC } from 'react';
 import './Card.css';
+import { Result } from 'components/Api/Api';
 
 type CardProps = {
-  car: Iproduct;
+  person: Result;
 };
 
-class Card extends Component<CardProps> {
-  render() {
-    return (
-      <div className="card">
-        <img src={this.props.car.img} alt="car" />
-        <h2>
-          {this.props.car.name} <span> - {this.props.car.year}</span>
-        </h2>
-        <h3>Class: {this.props.car.category}</h3>
-        <h3>passengers: {this.props.car.people}</h3>
-        <h2>{this.props.car.price} &#8381;/day</h2>
-      </div>
-    );
-  }
-}
+const Card: FC<CardProps> = (props) => {
+  return (
+    <div className="card">
+      <img src={props.person.image} alt="person" />
+      <h2>{props.person.name}</h2>
+      <button>More details</button>
+    </div>
+  );
+};
 
 export default Card;

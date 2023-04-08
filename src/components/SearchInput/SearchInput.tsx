@@ -1,7 +1,11 @@
 import React, { FC, useEffect, useRef, useState } from 'react';
 import './SearchInput.css';
 
-const SearchInput: FC = () => {
+type SearchProps = {
+  updateData: (text: string) => void;
+};
+
+const SearchInput: FC<SearchProps> = ({ updateData }) => {
   const [text, setText] = useState(localStorage.getItem('curSearch') || '');
 
   const searchRef = useRef('');
@@ -21,6 +25,13 @@ const SearchInput: FC = () => {
     event.preventDefault();
   };
 
+  const handleEnter = (event: React.KeyboardEvent<HTMLInputElement>): void => {
+    if (event.key === 'Enter') {
+      localStorage.setItem('curSearch', searchRef.current);
+      updateData(searchRef.current);
+    }
+  };
+
   return (
     <form className="search_container" onSubmit={(event) => handleSubmit(event)}>
       <input
@@ -28,6 +39,7 @@ const SearchInput: FC = () => {
         placeholder="Search here..."
         value={text}
         onChange={(event) => handleChange(event)}
+        onKeyDown={handleEnter}
       ></input>
     </form>
   );

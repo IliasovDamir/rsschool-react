@@ -4,7 +4,13 @@ import { fireEvent, render, screen } from '@testing-library/react';
 
 describe('SearchInput', () => {
   test('SearchInput render', () => {
-    render(<SearchInput />);
+    render(
+      <SearchInput
+        updateData={function (text: string): void {
+          throw new Error('Function not implemented.');
+        }}
+      />
+    );
     const input = screen.getByPlaceholderText<HTMLInputElement>('Search here...');
     expect(input).toBeInTheDocument();
     fireEvent.input(input, { target: { value: 'Aaaa' } });
