@@ -22,7 +22,6 @@ const Popup: FC<PopupProps> = (props) => {
             <h3>Gender: {props.currentPerson.gender}</h3>
             <h3>Species: {props.currentPerson.species}</h3>
             <h3>Status: {props.currentPerson.status}</h3>
-            <h3>Type: {props.currentPerson.type}</h3>
           </div>
         </div>
       ) : (
