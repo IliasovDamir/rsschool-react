@@ -35,7 +35,7 @@ export interface Location {
   url: string;
 }
 
-const searchPerson = async (text: string) => {
+const searchPerson = async (text = '') => {
   const response = await fetch(`https://rickandmortyapi.com/api/character/?name=${text}`);
   const data: Data = await response.json();
   return data;

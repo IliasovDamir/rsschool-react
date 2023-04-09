@@ -4,6 +4,7 @@ import { Result } from 'components/Api/Api';
 
 type CardProps = {
   person: Result;
+  showPopup: () => void;
 };
 
 const Card: FC<CardProps> = (props) => {
@@ -11,7 +12,7 @@ const Card: FC<CardProps> = (props) => {
     <div className="card">
       <img src={props.person.image} alt="person" />
       <h2>{props.person.name}</h2>
-      <button>More details</button>
+      <button onClick={props.showPopup}>More details</button>
     </div>
   );
 };
