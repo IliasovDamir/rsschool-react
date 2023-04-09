@@ -32,4 +32,6 @@
 
 .popup__content.active {
   transform: scale(1);
+  color: black;
+  text-shadow: none;
 }

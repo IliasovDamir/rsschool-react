@@ -6,7 +6,7 @@ describe('SearchInput', () => {
   test('SearchInput render', () => {
     render(
       <SearchInput
-        updateData={function (text: string): void {
+        updateData={function (): void {
           throw new Error('Function not implemented.');
         }}
       />
