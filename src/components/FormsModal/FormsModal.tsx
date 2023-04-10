@@ -6,10 +6,7 @@ type Props = {
   closeModal: () => void;
 };
 
-const FormsModal: FC<Props> = (Props) => {
-  const isOpen = Props.isModalOpen;
-  const closeModal = Props.closeModal;
-
+const FormsModal: FC<Props> = ({ isModalOpen, closeModal }) => {
   const showModalTimer = () => {
     const timer = setTimeout(() => {
       closeModal();
@@ -19,7 +16,7 @@ const FormsModal: FC<Props> = (Props) => {
   showModalTimer();
 
   return (
-    <div className={isOpen ? 'form_modal-open' : 'form_modal-close'}>
+    <div className={isModalOpen ? 'form_modal-open' : 'form_modal-close'}>
       Thank you for submitting your rental request.
     </div>
   );

@@ -8,20 +8,20 @@ type PopupProps = {
   currentPerson: Result | null;
 };
 
-const Popup: FC<PopupProps> = (props) => {
+const Popup: FC<PopupProps> = ({ active, setActive, currentPerson }) => {
   return (
     <div>
-      {props.currentPerson ? (
-        <div className={props.active ? 'popup active' : 'popup'} onClick={() => props.setActive()}>
+      {currentPerson ? (
+        <div className={active ? 'popup active' : 'popup'} onClick={() => setActive()}>
           <div
-            className={props.active ? 'popup__content active' : 'popup__content'}
-            onClick={(e) => e.stopPropagation()}
+            className={active ? 'popup__content active' : 'popup__content'}
+            onClick={(event) => event.stopPropagation()}
           >
-            <img src={props.currentPerson.image} alt="person" />
-            <h2>{props.currentPerson.name}</h2>
-            <h3>Gender: {props.currentPerson.gender}</h3>
-            <h3>Species: {props.currentPerson.species}</h3>
-            <h3>Status: {props.currentPerson.status}</h3>
+            <img src={currentPerson.image} alt="person" />
+            <h2>{currentPerson.name}</h2>
+            <h3>Gender: {currentPerson.gender}</h3>
+            <h3>Species: {currentPerson.species}</h3>
+            <h3>Status: {currentPerson.status}</h3>
           </div>
         </div>
       ) : (

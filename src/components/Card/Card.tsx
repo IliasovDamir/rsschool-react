@@ -7,12 +7,12 @@ type CardProps = {
   showPopup: () => void;
 };
 
-const Card: FC<CardProps> = (props) => {
+const Card: FC<CardProps> = ({ person, showPopup }) => {
   return (
     <div className="card">
-      <img src={props.person.image} alt="person" />
-      <h2>{props.person.name}</h2>
-      <button onClick={props.showPopup}>More details</button>
+      <img src={person.image} alt="person" />
+      <h2>{person.name}</h2>
+      <button onClick={showPopup}>More details</button>
     </div>
   );
 };

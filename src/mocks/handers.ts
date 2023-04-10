@@ -2,7 +2,7 @@ import { Data } from 'components/Api/Api';
 import { rest } from 'msw';
 
 export const handlers = [
-  rest.get(`https://rickandmortyapi.com/api/character/?name=`, (request, response, context) => {
+  rest.get(`https://rickandmortyapi.com/api/character/?name=dar`, (request, response, context) => {
     return response(context.status(200), context.json(res));
   }),
 ];

@@ -2,6 +2,17 @@ import React from 'react';
 import HomePage from './HomePage';
 import { fireEvent, render, screen, waitFor } from '@testing-library/react';
 import { res } from 'mocks/handers';
+import { server } from 'mocks/server';
+
+beforeAll(() =>
+  server.listen({
+    onUnhandledRequest: 'error',
+  })
+);
+
+afterEach(() => server.restoreHandlers());
+
+afterAll(() => server.close());
 
 describe('HomePage', () => {
   test('HomePage renders', async () => {
