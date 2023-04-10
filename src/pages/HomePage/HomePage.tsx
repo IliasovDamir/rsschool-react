@@ -9,6 +9,7 @@ const HomePage = () => {
   const [data, setData] = useState<Result[]>([]);
   const [popupActive, setPopupActive] = useState(false);
   const [currentPerson, setCurrentPerson] = useState<Result | null>(null);
+  const [errorMessage, setEroroMesage] = useState('');
 
   useEffect(() => {
     fetchPersons(localStorage.getItem('curSearch') || '');
@@ -16,13 +17,20 @@ const HomePage = () => {
 
   const fetchPersons = async (curSearch: string) => {
     const newData = await searchPerson(curSearch);
-    setData(newData.results);
+    typeof newData === 'string' ? setData([]) : setData(newData.results);
   };
 
   const updateSearchText = async (text: string) => {
+    setEroroMesage('Processing...');
     const data = await searchPerson(text);
-    const curPersons = data.results;
-    setData(curPersons);
+    if (typeof data === 'string') {
+      setEroroMesage('Person is not defined');
+      setData([]);
+    } else {
+      setEroroMesage('');
+      const curPersons = data.results;
+      setData(curPersons);
+    }
   };
 
   const showPopup = (person: Result) => {
@@ -39,9 +47,11 @@ const HomePage = () => {
       <h1>Home</h1>
       <SearchInput updateData={updateSearchText} />
       <div className="container">
-        {data.map((person) => (
-          <Card showPopup={() => showPopup(person)} person={person} key={person.id} />
-        ))}
+        {errorMessage
+          ? errorMessage
+          : data.map((person) => (
+              <Card showPopup={() => showPopup(person)} person={person} key={person.id} />
+            ))}
       </div>
       <Popup active={popupActive} setActive={closePopup} currentPerson={currentPerson} />
     </section>

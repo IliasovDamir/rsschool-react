@@ -1,6 +1,7 @@
 export interface Data {
   info: Info;
   results: Result[];
+  error?: string;
 }
 
 export interface Info {
@@ -8,6 +9,7 @@ export interface Info {
   pages: number;
   next: string | null;
   prev: string | null;
+  error?: string;
 }
 
 export interface Result {
@@ -38,7 +40,11 @@ export interface Location {
 const searchPerson = async (text = '') => {
   const response = await fetch(`https://rickandmortyapi.com/api/character/?name=${text}`);
   const data: Data = await response.json();
-  return data;
+  if (data.error) {
+    return data.error;
+  } else {
+    return data;
+  }
 };
 
 export default searchPerson;
