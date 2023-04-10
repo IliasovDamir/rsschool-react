@@ -1,0 +1,11 @@
+.search_container {
+  width: 700px;
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+
+.search_container input{
+  width: 80%;
+  padding: 5px;
+}
