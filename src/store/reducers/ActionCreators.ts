@@ -1,17 +1,22 @@
 import { Data } from 'models/models';
+// import { AppDispatch } from 'store/store';
+// import { personSlise } from './PersonSlice';
+import { createAsyncThunk } from '@reduxjs/toolkit';
 import { AppDispatch } from 'store/store';
 import { personSlise } from './PersonSlice';
 
 export const BASE_URL = 'https://rickandmortyapi.com/api/character/?name=';
 
-export const fetchPersons = (text: string) => async (dispatch: AppDispatch) => {
+export const fetchPersons = createAsyncThunk('persons/fetchAll', async (text: string, thunkApi) => {
   try {
-    dispatch(personSlise.actions.personFetching());
     const response = await fetch(`${BASE_URL}${text}`);
     const data: Data = await response.json();
-    dispatch(personSlise.actions.personFetchingSuccess(data.results));
-    console.log(data);
-  } catch (e) {
-    dispatch(personSlise.actions.personFetchingError('There is nothing here'));
+    return data.results;
+  } catch (error) {
+    return thunkApi.rejectWithValue('Failed to load characters');
   }
+});
+
+export const updateSearchText = (text: string) => (dispatch: AppDispatch) => {
+  dispatch(personSlise.actions.updateSearchText(text));
 };

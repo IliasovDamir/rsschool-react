@@ -4,29 +4,23 @@ import Card from 'components/Card/Card';
 import SearchInput from 'components/SearchInput/SearchInput';
 import Popup from 'components/Popup/Popup';
 import { Result } from 'models/models';
-import { personSlise } from 'store/reducers/PersonSlice';
 import { useAppDispatch } from 'hooks/redux';
 import { useAppSelector } from 'hooks/redux';
 import { fetchPersons } from 'store/reducers/ActionCreators';
 
 const HomePage = () => {
-  const { searchText, persons } = useAppSelector((state) => state.personReducer);
+  const { searchText, persons, isLoading, error } = useAppSelector((state) => state.personReducer);
   // const { setSearchText } = personSlise.actions;
   const dispatch = useAppDispatch();
+  console.log('searchText', searchText);
 
-  const [data, setData] = useState<Result[]>([]);
   const [popupActive, setPopupActive] = useState(false);
   const [currentPerson, setCurrentPerson] = useState<Result | null>(null);
-  // const [errorMessage, setEroroMesage] = useState('');
 
   useEffect(() => {
-    // fetchPersons(localStorage.getItem('curSearch') || '');
-    updatePersons();
+    persons.length === 0 && dispatch(fetchPersons(searchText));
+    console.log('searchText', searchText);
   }, []);
-
-  const updatePersons = async () => {
-    dispatch(fetchPersons(''));
-  };
 
   const showPopup = (person: Result) => {
     setPopupActive(true);
@@ -37,22 +31,24 @@ const HomePage = () => {
     setPopupActive(false);
   };
 
+  console.log('error', error);
+  console.log('persons', persons);
+
   return (
     <section className="section_home">
       <h1>Home</h1>
+      {isLoading && <h2>Loading...</h2>}
+      {error && <h2>{error}</h2>}
       <SearchInput />
       <div className="container">
-        {persons.map((person) => (
-          <Card showPopup={() => showPopup(person)} person={person} key={person.id} />
-        ))}
+        {!persons ? (
+          <h2>Characters not found</h2>
+        ) : (
+          persons.map((person) => (
+            <Card showPopup={() => showPopup(person)} person={person} key={person.id} />
+          ))
+        )}
       </div>
-      {/* <div className="container">
-        {errorMessage
-          ? errorMessage
-          : data.map((person) => (
-              <Card showPopup={() => showPopup(person)} person={person} key={person.id} />
-            ))}
-      </div> */}
       <Popup active={popupActive} setActive={closePopup} currentPerson={currentPerson} />
     </section>
   );

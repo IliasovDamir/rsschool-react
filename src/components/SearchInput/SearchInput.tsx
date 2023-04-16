@@ -1,24 +1,22 @@
-import React, { FC, useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef } from 'react';
 import './SearchInput.css';
-
-type SearchProps = {
-  updateData: (text: string) => void;
-};
+import { useAppDispatch, useAppSelector } from 'hooks/redux';
+import { fetchPersons, updateSearchText } from 'store/reducers/ActionCreators';
 
 const SearchInput = () => {
-  const [text, setText] = useState(localStorage.getItem('curSearch') || '');
-
+  const { searchText } = useAppSelector((state) => state.personReducer);
+  const dispatch = useAppDispatch();
   const searchRef = useRef('');
-  // searchRef.current = text;
+  searchRef.current = searchText;
 
-  // useEffect(() => {
-  //   return () => {
-  //     localStorage.setItem('curSearch', searchRef.current);
-  //   };
-  // }, []);
+  useEffect(() => {
+    return () => {
+      dispatch(updateSearchText(searchRef.current));
+    };
+  }, []);
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setText(event.target.value);
+    dispatch(updateSearchText(event.target.value));
   };
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>): void => {
@@ -27,8 +25,8 @@ const SearchInput = () => {
 
   const handleEnter = (event: React.KeyboardEvent<HTMLInputElement>): void => {
     if (event.key === 'Enter') {
-      // localStorage.setItem('curSearch', searchRef.current);
-      // updateData(searchRef.current);
+      dispatch(fetchPersons(searchText));
+      console.log('searchText', searchText);
     }
   };
 
@@ -37,7 +35,7 @@ const SearchInput = () => {
       <input
         type="text"
         placeholder="Search here..."
-        value={text}
+        value={searchText}
         onChange={(event) => handleChange(event)}
         onKeyDown={handleEnter}
       ></input>
