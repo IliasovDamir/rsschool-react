@@ -4,6 +4,11 @@ import { fireEvent, render, screen, waitFor } from '@testing-library/react';
 import { res } from 'mocks/handers';
 import { server } from 'mocks/server';
 
+import { setupStore } from 'store/store';
+import { Provider } from 'react-redux';
+
+const store = setupStore();
+
 beforeAll(() =>
   server.listen({
     onUnhandledRequest: 'error',
@@ -16,7 +21,11 @@ afterAll(() => server.close());
 
 describe('HomePage', () => {
   test('HomePage renders', async () => {
-    render(<HomePage />);
+    render(
+      <Provider store={store}>
+        <HomePage />
+      </Provider>
+    );
     expect(screen.getByText(/Home/i)).toBeInTheDocument();
 
     const input = screen.getByPlaceholderText<HTMLInputElement>('Search here...');

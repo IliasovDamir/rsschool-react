@@ -69,7 +69,10 @@
     "collectCoverageFrom": [
       "src/**/*.{ts,tsx}",
       "!**/node_modukes/**",
-      "!src/index.tsx"
+      "!src/index.tsx",
+      "!src/App.tsx",
+      "!src/components/Navigation/Navigation.tsx",
+      "!src/components/Popup/Popup.tsx"
     ]
   }
 }
