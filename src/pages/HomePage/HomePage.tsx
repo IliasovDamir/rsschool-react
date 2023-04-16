@@ -10,16 +10,14 @@ import { fetchPersons } from 'store/reducers/ActionCreators';
 
 const HomePage = () => {
   const { searchText, persons, isLoading, error } = useAppSelector((state) => state.personReducer);
-  // const { setSearchText } = personSlise.actions;
   const dispatch = useAppDispatch();
-  console.log('searchText', searchText);
 
   const [popupActive, setPopupActive] = useState(false);
   const [currentPerson, setCurrentPerson] = useState<Result | null>(null);
 
   useEffect(() => {
     persons.length === 0 && dispatch(fetchPersons(searchText));
-    console.log('searchText', searchText);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const showPopup = (person: Result) => {
@@ -30,9 +28,6 @@ const HomePage = () => {
   const closePopup = () => {
     setPopupActive(false);
   };
-
-  console.log('error', error);
-  console.log('persons', persons);
 
   return (
     <section className="section_home">

@@ -1,5 +1,5 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
-import { Result } from 'models/models';
+import { IFormCards, Result } from 'models/models';
 import { fetchPersons } from './ActionCreators';
 
 interface PersonState {
@@ -7,6 +7,7 @@ interface PersonState {
   isLoading: boolean;
   error: string;
   searchText: string;
+  formsCard: IFormCards[];
 }
 
 const initialState: PersonState = {
@@ -14,6 +15,7 @@ const initialState: PersonState = {
   isLoading: false,
   error: '',
   searchText: '',
+  formsCard: [],
 };
 
 export const personSlise = createSlice({
@@ -22,6 +24,9 @@ export const personSlise = createSlice({
   reducers: {
     updateSearchText(state, action: PayloadAction<string>) {
       state.searchText = action.payload;
+    },
+    updateFormsCardList(state, action: PayloadAction<IFormCards>) {
+      state.formsCard.push(action.payload);
     },
   },
   extraReducers: (builder) => {

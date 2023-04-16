@@ -2,13 +2,16 @@ import React, { FC } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import './Forms.css';
 import { IFormCards } from 'models/models';
+import { useAppDispatch } from 'hooks/redux';
+import { updateFormsCardList } from 'store/reducers/ActionCreators';
 
 type Props = {
-  updateCardsList: (data: IFormCards) => void;
   openModal: () => void;
 };
 
-const Forms: FC<Props> = ({ updateCardsList, openModal }) => {
+const Forms: FC<Props> = ({ openModal }) => {
+  const dispatch = useAppDispatch();
+
   const {
     register,
     handleSubmit,
@@ -18,11 +21,10 @@ const Forms: FC<Props> = ({ updateCardsList, openModal }) => {
 
   const onSubmit: SubmitHandler<IFormCards> = (data: IFormCards) => {
     const path = URL.createObjectURL(new Blob([data.photo[0]]));
-    console.log(path);
     data.photo = path;
-    updateCardsList(data);
     openModal();
     reset();
+    dispatch(updateFormsCardList(data));
   };
 
   return (

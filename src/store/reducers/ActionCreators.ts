@@ -1,6 +1,4 @@
-import { Data } from 'models/models';
-// import { AppDispatch } from 'store/store';
-// import { personSlise } from './PersonSlice';
+import { Data, IFormCards } from 'models/models';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { AppDispatch } from 'store/store';
 import { personSlise } from './PersonSlice';
@@ -19,4 +17,8 @@ export const fetchPersons = createAsyncThunk('persons/fetchAll', async (text: st
 
 export const updateSearchText = (text: string) => (dispatch: AppDispatch) => {
   dispatch(personSlise.actions.updateSearchText(text));
+};
+
+export const updateFormsCardList = (formsCard: IFormCards) => (dispatch: AppDispatch) => {
+  dispatch(personSlise.actions.updateFormsCardList(formsCard));
 };
