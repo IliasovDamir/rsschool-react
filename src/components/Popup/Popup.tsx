@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
 import './Popup.css';
-import { Result } from 'components/Api/Api';
+import { Result } from 'models/models';
 
 type PopupProps = {
   active: boolean;

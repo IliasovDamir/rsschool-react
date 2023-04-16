@@ -1,15 +1,7 @@
 import React, { FC } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import './Forms.css';
-
-export interface IFormCards {
-  photo: string;
-  name: string;
-  date: string;
-  carCategory: string;
-  daysToRent: string;
-  accept: boolean;
-}
+import { IFormCards } from 'models/models';
 
 type Props = {
   updateCardsList: (data: IFormCards) => void;

@@ -5,17 +5,17 @@ type SearchProps = {
   updateData: (text: string) => void;
 };
 
-const SearchInput: FC<SearchProps> = ({ updateData }) => {
+const SearchInput = () => {
   const [text, setText] = useState(localStorage.getItem('curSearch') || '');
 
   const searchRef = useRef('');
-  searchRef.current = text;
+  // searchRef.current = text;
 
-  useEffect(() => {
-    return () => {
-      localStorage.setItem('curSearch', searchRef.current);
-    };
-  }, []);
+  // useEffect(() => {
+  //   return () => {
+  //     localStorage.setItem('curSearch', searchRef.current);
+  //   };
+  // }, []);
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setText(event.target.value);
@@ -27,8 +27,8 @@ const SearchInput: FC<SearchProps> = ({ updateData }) => {
 
   const handleEnter = (event: React.KeyboardEvent<HTMLInputElement>): void => {
     if (event.key === 'Enter') {
-      localStorage.setItem('curSearch', searchRef.current);
-      updateData(searchRef.current);
+      // localStorage.setItem('curSearch', searchRef.current);
+      // updateData(searchRef.current);
     }
   };
 

@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
 import './Card.css';
-import { Result } from 'components/Api/Api';
+import { Result } from 'models/models';
 
 type CardProps = {
   person: Result;

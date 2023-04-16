@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
-import { IFormCards } from './Forms';
 import './Forms.css';
+import { IFormCards } from 'models/models';
 
 type FormsCardProps = { card: IFormCards };
 

@@ -1,4 +1,4 @@
-import { Data } from 'components/Api/Api';
+import { Data } from 'models/models';
 import { rest } from 'msw';
 
 export const handlers = [

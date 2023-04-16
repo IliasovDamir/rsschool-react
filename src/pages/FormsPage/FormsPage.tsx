@@ -1,8 +1,9 @@
-import Forms, { IFormCards } from 'components/Forms/Forms';
 import React, { useState } from 'react';
 import './FormsPage.css';
 import FormsCard from 'components/Forms/FormsCard';
 import FormsModal from 'components/FormsModal/FormsModal';
+import { IFormCards } from 'models/models';
+import Forms from 'components/Forms/Forms';
 
 const FormsPage = () => {
   const [cardsList, setCardsList] = useState([
