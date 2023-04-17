@@ -6,6 +6,7 @@ import { server } from 'mocks/server';
 
 import { setupStore } from 'store/store';
 import { Provider } from 'react-redux';
+import userEvent from '@testing-library/user-event';
 
 const store = setupStore();
 
@@ -35,5 +36,17 @@ describe('HomePage', () => {
     fireEvent.keyDown(input, { key: 'Enter', code: 'Enter', charCode: 13 });
     await waitFor(() => screen.findAllByText(/More details/i));
     expect(screen.getAllByText(/More details/i).length).toEqual(persons);
+  });
+  test('Search characters works correctly', async () => {
+    const store = setupStore();
+    render(
+      <Provider store={store}>
+        <HomePage />
+      </Provider>
+    );
+    const input = screen.getByPlaceholderText<HTMLInputElement>('Search here...');
+    userEvent.type(input, '{enter}');
+    fireEvent.input(input, { target: { value: 'Aaaa' } });
+    expect(input.value).toBe('Aaaa');
   });
 });
