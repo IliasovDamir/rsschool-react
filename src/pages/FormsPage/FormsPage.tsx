@@ -27,7 +27,7 @@ const FormsPage = () => {
         {formsCard.length <= 0
           ? ''
           : formsCard.map((card: IFormCards) =>
-              card.name ? <FormsCard card={card} key={card.name} /> : ''
+              card.name ? <FormsCard card={card} key={crypto.randomUUID()} /> : ''
             )}
       </div>
       <FormsModal isModalOpen={openModal} closeModal={closeModalWindow} />

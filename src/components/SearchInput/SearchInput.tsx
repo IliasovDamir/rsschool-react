@@ -27,7 +27,6 @@ const SearchInput = () => {
   const handleEnter = (event: React.KeyboardEvent<HTMLInputElement>): void => {
     if (event.key === 'Enter') {
       dispatch(fetchPersons(searchText));
-      console.log('searchText', searchText);
     }
   };
 

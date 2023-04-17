@@ -16,7 +16,7 @@ const HomePage = () => {
   const [currentPerson, setCurrentPerson] = useState<Result | null>(null);
 
   useEffect(() => {
-    persons.length === 0 && dispatch(fetchPersons(searchText));
+    dispatch(fetchPersons(searchText));
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -39,7 +39,7 @@ const HomePage = () => {
         {!persons ? (
           <h2>Characters not found</h2>
         ) : (
-          persons.map((person) => (
+          persons.map((person: Result) => (
             <Card showPopup={() => showPopup(person)} person={person} key={person.id} />
           ))
         )}
